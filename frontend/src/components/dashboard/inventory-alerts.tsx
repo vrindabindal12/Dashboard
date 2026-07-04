@@ -35,7 +35,7 @@ export function InventoryAlertsList({ alerts }: { alerts: Alert[] }) {
   };
 
   return (
-    <Card className="bg-card/50 backdrop-blur-sm border-white/10 h-full flex flex-col">
+    <Card className="bg-card border-border shadow-sm h-full flex flex-col">
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <Package className="w-5 h-5 text-primary" />

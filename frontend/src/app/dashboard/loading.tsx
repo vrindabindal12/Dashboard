@@ -11,7 +11,7 @@ export default function DashboardLoading() {
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
         {[1, 2, 3, 4].map((i) => (
-          <Card key={i} className="overflow-hidden bg-card/50 border-white/10 shadow-lg relative">
+          <Card key={i} className="overflow-hidden bg-card border-border shadow-sm relative">
             <CardHeader className="flex flex-row items-center justify-between pb-2">
               <Skeleton className="h-4 w-[100px]" />
               <Skeleton className="h-8 w-8 rounded-full" />
@@ -25,7 +25,7 @@ export default function DashboardLoading() {
       </div>
 
       <div className="grid gap-6 grid-cols-1 lg:grid-cols-4">
-        <Card className="col-span-1 lg:col-span-4 bg-card/50 shadow-xl border-white/10 h-[450px]">
+        <Card className="col-span-1 lg:col-span-4 bg-card border-border shadow-sm h-[450px]">
           <CardHeader>
             <Skeleton className="h-6 w-[200px]" />
             <Skeleton className="h-4 w-[300px] mt-2" />

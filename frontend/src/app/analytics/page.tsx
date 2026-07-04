@@ -66,7 +66,7 @@ export default async function AnalyticsPage() {
         <p className="text-muted-foreground mt-1">XGBoost machine learning forecast model predicting future platform revenue.</p>
       </div>
 
-      <Card className="bg-card/50 backdrop-blur-sm border-white/10">
+      <Card className="bg-card border-border shadow-sm">
         <CardHeader>
           <CardTitle>12-Week Revenue Forecast</CardTitle>
           <CardDescription>Historical performance vs Machine Learning prediction</CardDescription>
@@ -77,7 +77,7 @@ export default async function AnalyticsPage() {
       </Card>
       
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
-        <Card className="bg-card/50 backdrop-blur-sm border-white/10">
+        <Card className="bg-card border-border shadow-sm">
           <CardHeader>
             <CardTitle className="text-sm font-medium text-muted-foreground">Model Architecture</CardTitle>
           </CardHeader>
@@ -87,7 +87,7 @@ export default async function AnalyticsPage() {
           </CardContent>
         </Card>
         
-        <Card className="bg-card/50 backdrop-blur-sm border-white/10">
+        <Card className="bg-card border-border shadow-sm">
           <CardHeader>
             <CardTitle className="text-sm font-medium text-muted-foreground">Input Features</CardTitle>
           </CardHeader>
@@ -97,7 +97,7 @@ export default async function AnalyticsPage() {
           </CardContent>
         </Card>
         
-        <Card className="bg-card/50 backdrop-blur-sm border-white/10">
+        <Card className="bg-card border-border shadow-sm">
           <CardHeader>
             <CardTitle className="text-sm font-medium text-muted-foreground">Forecast Horizon</CardTitle>
           </CardHeader>

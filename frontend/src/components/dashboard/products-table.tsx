@@ -37,7 +37,7 @@ export function ProductsTable({ initialProducts }: ProductsTableProps) {
         </div>
       </div>
 
-      <Card className="bg-card/50 backdrop-blur-sm border-white/10">
+      <Card className="bg-card border-border shadow-sm">
         <CardHeader>
           <CardTitle>Top Categories Performance</CardTitle>
         </CardHeader>

@@ -41,8 +41,8 @@ export function AiInsightsCard() {
   };
 
   return (
-    <Card className="bg-card/50 backdrop-blur-sm border-white/10 mt-6 relative overflow-hidden">
-      <div className="absolute top-0 right-0 -mr-16 -mt-16 w-64 h-64 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
+    <Card className="bg-card border-border shadow-sm mt-6 relative overflow-hidden">
+      
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <Sparkles className="w-5 h-5 text-primary" />

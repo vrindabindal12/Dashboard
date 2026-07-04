@@ -14,7 +14,7 @@ interface KPICardProps {
 
 export function KPICard({ title, value, icon: Icon, description, trend, trendValue, className }: KPICardProps) {
   return (
-    <Card className={cn("overflow-hidden bg-card/50 backdrop-blur-sm border-white/10 shadow-lg relative", className)}>
+    <Card className={cn("overflow-hidden bg-card border-border shadow-sm shadow-lg relative", className)}>
       <CardHeader className="flex flex-row items-center justify-between pb-2">
         <CardTitle className="text-sm font-medium text-muted-foreground">{title}</CardTitle>
         <div className="h-8 w-8 rounded-full bg-primary/20 flex items-center justify-center">
@@ -40,7 +40,7 @@ export function KPICard({ title, value, icon: Icon, description, trend, trendVal
         )}
       </CardContent>
       {/* Decorative gradient blur in background */}
-      <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-primary/10 rounded-full blur-2xl z-0" />
+      
     </Card>
   );
 }

@@ -17,7 +17,7 @@ export function RevenueChart({ data }: RevenueChartProps) {
   }));
 
   return (
-    <Card className="col-span-1 lg:col-span-4 bg-card/50 backdrop-blur-sm shadow-xl border-white/10">
+    <Card className="col-span-1 lg:col-span-4 bg-card border-border shadow-sm">
       <CardHeader>
         <CardTitle>Revenue Trend</CardTitle>
         <CardDescription>Daily revenue performance over time</CardDescription>

@@ -16,7 +16,7 @@ export default async function StoresPage() {
         <p className="text-muted-foreground mt-1">Monitor performance metrics across all physical locations.</p>
       </div>
 
-      <Card className="bg-card/50 backdrop-blur-sm border-white/10">
+      <Card className="bg-card border-border shadow-sm">
         <CardHeader>
           <CardTitle>Store Performance</CardTitle>
         </CardHeader>

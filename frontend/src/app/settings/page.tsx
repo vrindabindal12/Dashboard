@@ -9,7 +9,7 @@ export default function SettingsPage() {
         <p className="text-muted-foreground mt-1">Manage your account and platform configurations.</p>
       </div>
 
-      <Card className="bg-card/50 backdrop-blur-sm border-white/10">
+      <Card className="bg-card border-border shadow-sm">
         <CardHeader>
           <CardTitle>Configuration</CardTitle>
           <CardDescription>System settings and user preferences</CardDescription>

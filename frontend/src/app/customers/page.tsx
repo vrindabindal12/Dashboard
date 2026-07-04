@@ -49,7 +49,7 @@ export default async function CustomersPage() {
         />
       </div>
 
-      <Card className="bg-card/50 backdrop-blur-sm border-white/10">
+      <Card className="bg-card border-border shadow-sm">
         <CardHeader>
           <CardTitle>Customer Segments</CardTitle>
           <CardDescription>Breakdown by purchasing behavior</CardDescription>

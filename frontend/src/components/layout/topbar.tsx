@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 
 export function Topbar() {
   return (
-    <div className="flex items-center justify-between h-16 px-6 border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <div className="flex items-center justify-between h-16 px-6 border-b border-border/40 bg-card">
       <div className="flex-1 flex items-center">
         <div className="relative w-full max-w-md">
           <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
