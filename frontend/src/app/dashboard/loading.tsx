@@ -5,20 +5,20 @@ export default function DashboardLoading() {
   return (
     <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
       <div>
-        <Skeleton className="h-10 w-[300px]" />
-        <Skeleton className="h-5 w-[450px] mt-2" />
+        <Skeleton className="h-10 w-[250px] bg-muted/60" />
+        <Skeleton className="h-4 w-[350px] mt-3 bg-muted/40" />
       </div>
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
         {[1, 2, 3, 4].map((i) => (
-          <Card key={i} className="overflow-hidden bg-card border-border shadow-sm relative">
+          <Card key={i} className="overflow-hidden bg-card border-border shadow-sm">
             <CardHeader className="flex flex-row items-center justify-between pb-2">
-              <Skeleton className="h-4 w-[100px]" />
-              <Skeleton className="h-8 w-8 rounded-full" />
+              <Skeleton className="h-4 w-[120px] bg-muted/60" />
+              <Skeleton className="h-4 w-4 rounded-sm bg-muted/60" />
             </CardHeader>
             <CardContent>
-              <Skeleton className="h-8 w-[120px] mb-2" />
-              <Skeleton className="h-3 w-[150px]" />
+              <Skeleton className="h-8 w-[140px] mb-3 bg-muted/80" />
+              <Skeleton className="h-3 w-[180px] bg-muted/40" />
             </CardContent>
           </Card>
         ))}
@@ -27,11 +27,11 @@ export default function DashboardLoading() {
       <div className="grid gap-6 grid-cols-1 lg:grid-cols-4">
         <Card className="col-span-1 lg:col-span-4 bg-card border-border shadow-sm h-[450px]">
           <CardHeader>
-            <Skeleton className="h-6 w-[200px]" />
-            <Skeleton className="h-4 w-[300px] mt-2" />
+            <Skeleton className="h-6 w-[180px] bg-muted/60" />
+            <Skeleton className="h-4 w-[280px] mt-2 bg-muted/40" />
           </CardHeader>
-          <CardContent className="h-[350px]">
-            <Skeleton className="h-full w-full rounded-md" />
+          <CardContent className="h-[350px] pt-6">
+            <Skeleton className="h-full w-full rounded-lg bg-muted/30" />
           </CardContent>
         </Card>
       </div>

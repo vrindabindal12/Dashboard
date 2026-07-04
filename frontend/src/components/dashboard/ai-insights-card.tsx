@@ -41,9 +41,9 @@ export function AiInsightsCard() {
   };
 
   return (
-    <Card className="bg-card border-border shadow-sm mt-6 relative overflow-hidden">
+    <Card className="bg-card border-border shadow-sm h-full flex flex-col hover:-translate-y-1 hover:shadow-md transition-all duration-300 ease-out">
       
-      <CardHeader>
+      <CardHeader className="pb-3 border-b border-border/40">
         <CardTitle className="flex items-center gap-2">
           <Sparkles className="w-5 h-5 text-primary" />
           Generative AI Insights

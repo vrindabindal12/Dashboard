@@ -37,7 +37,7 @@ export function InventoryAlertsList({ alerts }: { alerts: Alert[] }) {
           {alerts.map((alert) => (
             <div 
               key={alert.id} 
-              className="flex items-start gap-3 p-3 rounded-lg border border-border bg-muted/40 transition-colors hover:bg-muted/60"
+              className="flex items-start gap-3 p-3 rounded-lg border border-border bg-muted/40 transition-all duration-200 hover:bg-muted/60"
             >
               <div className="mt-0.5">
                 {getIcon(alert.severity)}
@@ -56,8 +56,14 @@ export function InventoryAlertsList({ alerts }: { alerts: Alert[] }) {
             </div>
           ))}
           {alerts.length === 0 && (
-            <div className="text-center text-muted-foreground py-8">
-              No critical inventory alerts at this time.
+            <div className="flex flex-col items-center justify-center text-center py-10 space-y-3">
+              <div className="w-12 h-12 rounded-full bg-emerald-500/10 flex items-center justify-center">
+                <CheckCircle2 className="w-6 h-6 text-emerald-500" />
+              </div>
+              <div>
+                <h3 className="font-semibold tracking-tight text-foreground">All clear</h3>
+                <p className="text-sm text-muted-foreground font-medium mt-1">Inventory levels are optimal across all regions.</p>
+              </div>
             </div>
           )}
         </div>

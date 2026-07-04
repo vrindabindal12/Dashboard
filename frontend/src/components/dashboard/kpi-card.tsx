@@ -14,7 +14,7 @@ interface KPICardProps {
 
 export function KPICard({ title, value, icon: Icon, description, trend, trendValue, className }: KPICardProps) {
   return (
-    <Card className={cn("overflow-hidden bg-card border-border shadow-sm", className)}>
+    <Card className={cn("overflow-hidden bg-card border-border shadow-sm hover:-translate-y-1 hover:shadow-md transition-all duration-300 ease-out", className)}>
       <CardHeader className="flex flex-row items-center justify-between pb-2">
         <CardTitle className="text-sm font-medium tracking-tight text-muted-foreground">{title}</CardTitle>
         <Icon className="h-4 w-4 text-muted-foreground" />
