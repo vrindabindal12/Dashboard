@@ -14,18 +14,23 @@ A full-stack, enterprise-grade retail analytics platform built to process and vi
 
 Most data analytics projects rely on static notebooks or unoptimized direct database querying. RetailOps Analytics was engineered to solve the "O(N) memory leak" problem common in junior data applications. By pushing all heavy aggregation (SUM, COUNT, GROUP BY) down to the PostgreSQL/SQLite engine via SQLAlchemy, this application can securely aggregate thousands of transaction records in milliseconds, streaming the processed KPIs via a FastAPI backend to a server-side rendered React dashboard.
 
-## Core Features & Data Architecture
+## Core Data Analytics Skills Demonstrated
 
-### 1. High-Performance SQL Aggregation
-The primary engineering feat of this project is the strictly optimized data layer. Instead of pulling raw data into Python memory to calculate metrics, all computations are executed within the database engine.
-- Computes Total Revenue, Profit Margins, and Average Order Value dynamically using `func.sum()` and `func.count()`.
-- Implements complex SQL projections (e.g. `SUM(weekly_sales * 0.18)`) to derive implicit metrics not native to the raw dataset.
+### 1. Advanced SQL & Data Aggregation
+The primary engineering feat of this project is the strictly optimized SQL data layer. Instead of pulling raw data into memory, all computations are executed within the database engine using SQLAlchemy (Python's premier SQL toolkit).
+- Computes Total Revenue, Profit Margins, and Average Order Value dynamically using native SQL `SUM()`, `COUNT()`, and `GROUP BY` functions.
+- Implements complex SQL projections (e.g., `SUM(weekly_sales * 0.18)`) to derive implicit metrics not native to the raw dataset.
 
-### 2. Full-Stack Business Intelligence
-- **Backend:** FastAPI routes validate data contracts using strictly typed Pydantic schemas.
-- **Frontend:** Built with Next.js 15 App Router using React Server Components (RSC) to guarantee zero client-side data fetching overhead and perfect layout stability.
+### 2. Python Data Engineering
+- **FastAPI & Python 3.10+:** Engineered a high-performance REST API to serve the aggregated data. 
+- **Pydantic:** Validates data contracts to ensure absolute data integrity before it reaches the presentation layer.
 
-### 3. Customer Cohort Analysis
+### 3. Custom Business Intelligence (Replacing Tableau/PowerBI)
+While traditional Data Analysts rely on locked-in vendor tools like **Tableau** or **PowerBI**, this project demonstrates the ability to build a **fully custom, full-stack BI Dashboard from scratch**.
+- Built with Next.js 15 App Router using React Server Components (RSC) to guarantee zero client-side data fetching overhead.
+- Utilizes Recharts for dynamic, interactive data visualization (Area charts, Pie charts) that match the exact capabilities of enterprise BI software but with complete layout control.
+
+### 4. Customer Cohort Analysis
 Includes a dynamic customer segmentation endpoint that categorizes users based on purchasing behavior (Champions, Loyal, At-Risk, Lost) providing actionable business value rather than just vanity metrics.
 
 ---
