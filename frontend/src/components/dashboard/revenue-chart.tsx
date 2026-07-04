@@ -19,7 +19,7 @@ export function RevenueChart({ data }: RevenueChartProps) {
   return (
     <Card className="col-span-1 lg:col-span-4 bg-card border-border shadow-sm">
       <CardHeader>
-        <CardTitle>Revenue Trend</CardTitle>
+        <CardTitle className="tracking-tight">Revenue Trend</CardTitle>
         <CardDescription>Daily revenue performance over time</CardDescription>
       </CardHeader>
       <CardContent className="h-[350px]">
@@ -27,11 +27,10 @@ export function RevenueChart({ data }: RevenueChartProps) {
           <AreaChart data={formattedData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
             <defs>
               <linearGradient id="colorRevenue" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="hsl(var(--primary))" stopOpacity={0.8}/>
-                <stop offset="95%" stopColor="hsl(var(--primary))" stopOpacity={0}/>
+                <stop offset="5%" stopColor="hsl(var(--foreground))" stopOpacity={0.15}/>
+                <stop offset="95%" stopColor="hsl(var(--foreground))" stopOpacity={0}/>
               </linearGradient>
             </defs>
-            <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="hsl(var(--border))" opacity={0.4} />
             <XAxis 
               dataKey="formattedDate" 
               stroke="hsl(var(--muted-foreground))"
@@ -39,6 +38,7 @@ export function RevenueChart({ data }: RevenueChartProps) {
               tickLine={false}
               axisLine={false}
               minTickGap={30}
+              className="font-medium"
             />
             <YAxis 
               stroke="hsl(var(--muted-foreground))"
@@ -46,17 +46,20 @@ export function RevenueChart({ data }: RevenueChartProps) {
               tickLine={false}
               axisLine={false}
               tickFormatter={(value) => `$${(value / 1000).toFixed(0)}k`}
+              className="font-medium"
             />
             <Tooltip 
-              contentStyle={{ backgroundColor: 'hsl(var(--card))', borderColor: 'hsl(var(--border))', borderRadius: '8px' }}
-              itemStyle={{ color: 'hsl(var(--foreground))' }}
+              cursor={{ stroke: 'hsl(var(--muted-foreground))', strokeWidth: 1, strokeDasharray: '4 4' }}
+              contentStyle={{ backgroundColor: 'hsl(var(--background))', borderColor: 'hsl(var(--border))', borderRadius: '8px', boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}
+              itemStyle={{ color: 'hsl(var(--foreground))', fontWeight: 600 }}
+              labelStyle={{ color: 'hsl(var(--muted-foreground))', marginBottom: '4px' }}
               formatter={(value: any) => [`$${Number(value).toLocaleString()}`, "Revenue"]}
             />
             <Area 
               type="monotone" 
               dataKey="revenue" 
-              stroke="hsl(var(--primary))" 
-              strokeWidth={3}
+              stroke="hsl(var(--foreground))" 
+              strokeWidth={2}
               fillOpacity={1} 
               fill="url(#colorRevenue)" 
             />

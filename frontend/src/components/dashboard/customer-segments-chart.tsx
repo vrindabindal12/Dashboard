@@ -7,7 +7,7 @@ interface CustomerSegmentsChartProps {
   data: CustomerSegment[];
 }
 
-const COLORS = ['#6366f1', '#8b5cf6', '#d946ef', '#0ea5e9', '#14b8a6'];
+const COLORS = ['hsl(var(--foreground))', 'hsl(var(--muted-foreground))', 'hsl(var(--border))', 'hsl(var(--primary))'];
 
 export function CustomerSegmentsChart({ data }: CustomerSegmentsChartProps) {
   return (
@@ -20,10 +20,10 @@ export function CustomerSegmentsChart({ data }: CustomerSegmentsChartProps) {
             cy="45%"
             innerRadius={80}
             outerRadius={120}
-            paddingAngle={5}
+            paddingAngle={2}
             dataKey="value"
-            stroke="rgba(255,255,255,0.1)"
-            strokeWidth={2}
+            stroke="hsl(var(--background))"
+            strokeWidth={3}
           >
             {data.map((entry, index) => (
               <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
@@ -31,16 +31,16 @@ export function CustomerSegmentsChart({ data }: CustomerSegmentsChartProps) {
           </Pie>
           <Tooltip 
             contentStyle={{ 
-              backgroundColor: 'rgba(9, 9, 11, 0.95)',
-              borderColor: 'rgba(255,255,255,0.1)',
+              backgroundColor: 'hsl(var(--background))',
+              borderColor: 'hsl(var(--border))',
               borderRadius: '8px',
-              boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)'
+              boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)'
             }}
-            itemStyle={{ color: '#e2e8f0' }}
+            itemStyle={{ color: 'hsl(var(--foreground))', fontWeight: 500 }}
             formatter={(value: number, name: string, props: any) => [
               `${value}%`, 
-              <span key={name} className="flex flex-col">
-                <span className="font-semibold">{name}</span>
+              <span key={name} className="flex flex-col tracking-tight">
+                <span className="font-semibold text-foreground">{name}</span>
                 <span className="text-xs text-muted-foreground">{props.payload.description}</span>
               </span>
             ]}
