@@ -40,26 +40,76 @@ Unlike traditional Tableau or PowerBI dashboards which abstract away the enginee
 
 ---
 
-## 🏗️ System Architecture & Data Flow
+## 🏗️ End-to-End Data Pipeline
 
-If you are a hiring manager or senior engineer reviewing this architecture, here is the exact data flow:
+Here is the high-level architecture of how raw data is transformed into a full-stack web application:
+
+```text
+                Kaggle Dataset
+                      │
+               Data Cleaning (Pandas)
+                      │
+                PostgreSQL Database
+                      │
+      SQL + EDA + Power BI Dashboard
+                      │
+          Train XGBoost Model (.pkl)
+                      │
+                FastAPI Backend
+                      │
+          /predict endpoint
+                      │
+             React / Next.js Frontend
+                      │
+              Render + Vercel
+```
+
+### 🧠 Pipeline Step-by-Step Breakdown
+
+1. **Kaggle Dataset**: The project begins with a raw, unstructured retail dataset sourced from Kaggle containing historical sales, store information, and macroeconomic indicators.
+2. **Data Cleaning (Pandas)**: A Python script utilizes `pandas` to drop null values, encode categorical variables (like Holiday Flags), and extract temporal features (Week of Year, Month).
+3. **PostgreSQL Database**: The cleaned DataFrame is exported and persisted into a relational SQL database schema optimized for fast analytical querying.
+4. **SQL + EDA + Power BI**: I performed Exploratory Data Analysis (EDA) using complex SQL queries (`GROUP BY`, `SUM()`) to understand seasonality and revenue trends, mapping out the initial logic for what a Power BI dashboard would visualize.
+5. **Train XGBoost Model (.pkl)**: Using `scikit-learn` and `xgboost`, I trained a regression model to forecast future revenue based on historical trends and macroeconomic factors, serializing the optimized model into a `.pkl` file via `joblib`.
+6. **FastAPI Backend**: A high-performance Python REST API is spun up using `FastAPI` to serve the data and the Machine Learning model to the web.
+7. **/predict endpoint**: The backend exposes endpoints like `/analytics/forecast` which dynamically loads the `.pkl` model and runs real-time inference on incoming requests.
+8. **React / Next.js Frontend**: The UI is built using Next.js 15 App Router, fetching the backend API data via React Server Components and rendering interactive Recharts visualizations.
+9. **Render + Vercel**: The full-stack application is deployed to production, with the Python backend hosted on Render and the Next.js frontend deployed seamlessly via Vercel.
+
+---
+
+## ⚙️ Detailed System Architecture
+
+This Mermaid diagram illustrates the internal technical data flow between the web services:
 
 ```mermaid
-flowchart TD
-    A[Kaggle Dataset] --> B[Data Cleaning <br/>Pandas]
-    B --> C[(PostgreSQL Database)]
-    C --> D[SQL + EDA + Power BI Dashboard]
-    D --> E[Train XGBoost Model <br/>.pkl]
-    E --> F[FastAPI Backend]
-    F --> G["/predict endpoint"]
-    G --> H[React / Next.js Frontend]
-    H --> I((Render + Vercel))
-    
-    classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px;
-    classDef db fill:#e1f5fe,stroke:#0288d1;
-    classDef deploy fill:#e8f5e9,stroke:#388e3c;
-    class C db;
-    class I deploy;
+graph TD
+    subgraph Data & Analytics Layer
+        DB[(SQL Database)]
+        EDA[SQL Queries & Aggregations]
+        RawData[Kaggle Retail Dataset] -.-> |Pandas Cleaning| DB
+        DB <--> EDA
+    end
+
+    subgraph Machine Learning Layer
+        Model[XGBoost Forecast Model]
+        DB --> |Feature Extraction| Model
+    end
+
+    subgraph Backend API Layer
+        FA[FastAPI Server]
+        ORM[SQLAlchemy ORM]
+        Model --> |joblib load| FA
+        FA <--> |Dynamic SQL execution| ORM
+        ORM <--> |Query data| DB
+    end
+
+    subgraph Frontend Presentation Layer
+        Next[Next.js 15 App Router]
+        UI[Recharts Dashboard & Insights]
+        Next <--> |Fetch API| FA
+        Next --> |Render UI| UI
+    end
 ```
 
 ---
