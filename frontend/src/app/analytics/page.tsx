@@ -19,35 +19,21 @@ export default async function AnalyticsPage() {
   // Get the last historical point to connect the lines
   const lastHistorical = recentHistorical[recentHistorical.length - 1];
   
-  const futureForecast = forecastData.map((d: any, index: number) => {
-    // If it's the very first forecast point, we set BOTH historical and forecast so the Recharts area connects
-    if (index === 0 && lastHistorical) {
-      return {
-        date: lastHistorical.date,
-        historical: lastHistorical.historical,
-        forecast: lastHistorical.historical
-      };
-    }
-    return {
-      date: d.date,
-      historical: null,
-      forecast: d.predicted_revenue
-    };
-  });
-  
   // We need to shift the futureForecast array down by 1 because we prepended the connecting node,
   // but let's just append the rest of the forecast.
   const mappedForecast = forecastData.map((d: any) => ({
      date: d.date,
      historical: null,
-     forecast: d.predicted_revenue
+     forecast: d.predicted_revenue,
+     confidenceBand: [d.forecast_lower, d.forecast_upper]
   }));
   
   // The connecting point
   const connectionPoint = lastHistorical ? {
     date: lastHistorical.date,
     historical: lastHistorical.historical,
-    forecast: lastHistorical.historical
+    forecast: lastHistorical.historical,
+    confidenceBand: [lastHistorical.historical, lastHistorical.historical]
   } : null;
 
   const chartData = [

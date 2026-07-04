@@ -1,8 +1,9 @@
 "use client";
 
 import { useEffect } from "react";
-import { AlertCircle, RefreshCw } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { AlertCircle, RefreshCw } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
 
 export default function GlobalError({
   error,
@@ -12,24 +13,29 @@ export default function GlobalError({
   reset: () => void;
 }) {
   useEffect(() => {
-    // Optionally log the error to an error reporting service
-    console.error(error);
+    // Log the error to an error reporting service
+    console.error("Dashboard caught global error:", error);
   }, [error]);
 
   return (
-    <div className="flex h-[80vh] flex-col items-center justify-center space-y-4 animate-in fade-in duration-500">
-      <div className="rounded-full bg-destructive/20 p-4">
-        <AlertCircle className="h-10 w-10 text-destructive" />
-      </div>
-      <h2 className="text-2xl font-bold tracking-tight">Something went wrong</h2>
-      <p className="text-muted-foreground max-w-md text-center">
-        We encountered an error while fetching the data. Ensure the backend API is running and accessible.
-      </p>
-      <div className="pt-4">
-        <Button onClick={() => reset()} className="flex items-center gap-2">
-          <RefreshCw className="h-4 w-4" /> Try again
-        </Button>
-      </div>
+    <div className="flex h-[80vh] w-full items-center justify-center p-6">
+      <Card className="w-full max-w-md bg-card border-border shadow-lg">
+        <CardContent className="pt-6 flex flex-col items-center text-center space-y-4">
+          <div className="w-16 h-16 bg-rose-500/10 rounded-full flex items-center justify-center mb-2">
+            <AlertCircle className="w-8 h-8 text-rose-500" />
+          </div>
+          <h2 className="text-2xl font-heading font-bold tracking-tight text-foreground">Connection Lost</h2>
+          <p className="text-muted-foreground text-sm leading-relaxed">
+            We are unable to connect to the RetailOps analytics engine. The server might be restarting or experiencing heavy load.
+          </p>
+          <div className="pt-4 w-full flex justify-center">
+            <Button onClick={() => reset()} className="gap-2 w-full max-w-[200px] transition-all hover:scale-105">
+              <RefreshCw className="w-4 h-4" />
+              Try Again
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
     </div>
   );
 }

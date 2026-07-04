@@ -1,20 +1,20 @@
-import { KPI, RevenueTrend, Product, Store, CustomerSegment } from "@/types";
+import { KPI, RevenueTrend, Product, Store, CustomerSegment, InventoryAlert, ForecastData, SalesByRegion, SalesByCategory } from "@/types";
 
 export const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000/api/v1";
 
-export async function fetchKPIs(): Promise<KPI> {
-  const res = await fetch(`${API_URL}/dashboard/kpis`, { cache: 'no-store' });
+export async function fetchKPIs(days: string = "30"): Promise<KPI> {
+  const res = await fetch(`${API_URL}/dashboard/kpis?days=${days}`, { cache: 'no-store' });
   if (!res.ok) throw new Error("Failed to fetch KPIs");
   return res.json();
 }
 
-export async function fetchInventoryAlerts(): Promise<any[]> {
-  const res = await fetch(`${API_URL}/dashboard/inventory-alerts`, { cache: 'no-store' });
+export async function fetchInventoryAlerts(days: string = "30"): Promise<InventoryAlert[]> {
+  const res = await fetch(`${API_URL}/dashboard/inventory-alerts?days=${days}`, { cache: 'no-store' });
   if (!res.ok) throw new Error("Failed to fetch inventory alerts");
   return res.json();
 }
 
-export async function fetchForecast(): Promise<any> {
+export async function fetchForecast(): Promise<ForecastData[]> {
   const res = await fetch(`${API_URL}/analytics/forecast`, { cache: 'no-store' });
   if (!res.ok) throw new Error("Failed to fetch forecast");
   return res.json();
@@ -26,19 +26,19 @@ export async function fetchInsights(): Promise<{insight: string}> {
   return res.json();
 }
 
-export async function fetchRevenueTrend(): Promise<RevenueTrend[]> {
-  const res = await fetch(`${API_URL}/dashboard/revenue-trend`, { cache: 'no-store' });
+export async function fetchRevenueTrend(days: string = "30"): Promise<RevenueTrend[]> {
+  const res = await fetch(`${API_URL}/dashboard/revenue-trend?days=${days}`, { cache: 'no-store' });
   if (!res.ok) throw new Error("Failed to fetch revenue trend");
   return res.json();
 }
 
-export async function fetchSalesByRegion(): Promise<any[]> {
+export async function fetchSalesByRegion(): Promise<SalesByRegion[]> {
   const res = await fetch(`${API_URL}/dashboard/sales-by-region`, { cache: 'no-store' });
   if (!res.ok) throw new Error("Failed to fetch sales by region");
   return res.json();
 }
 
-export async function fetchSalesByCategory(): Promise<any[]> {
+export async function fetchSalesByCategory(): Promise<SalesByCategory[]> {
   const res = await fetch(`${API_URL}/dashboard/sales-by-category`, { cache: 'no-store' });
   if (!res.ok) throw new Error("Failed to fetch sales by category");
   return res.json();

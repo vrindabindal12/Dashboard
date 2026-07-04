@@ -17,6 +17,8 @@ class ForecastDataPoint(BaseModel):
     date: str
     predicted_revenue: float
     is_forecast: bool
+    forecast_lower: float
+    forecast_upper: float
 
 @router.get("/forecast", response_model=List[ForecastDataPoint])
 def get_revenue_forecast():
@@ -26,47 +28,38 @@ def get_revenue_forecast():
             raise HTTPException(status_code=503, detail="Forecast model not trained yet. Run train_model.py first.")
         model = joblib.load(MODEL_PATH)
 
-    # In a real app, we would query the last date from the DB.
-    # For this demo, let's assume we want to forecast the next 12 weeks from today.
-    # To make the chart look contiguous, we'll return 4 weeks of historical (mocked) and 12 weeks of forecast
-    
     today = datetime.date.today()
-    
-    # Generate 12 future weeks
     future_dates = [today + datetime.timedelta(weeks=i) for i in range(1, 13)]
-    
-    # Create DataFrame for XGBoost features
-    # Required features: month, week_of_year, holiday_flag, temperature, fuel_price, cpi, unemployment
-    # We will use naive mean imputation for the environmental features for this demo
     
     future_data = []
     for d in future_dates:
         future_data.append({
             'holiday_flag': 1 if d.month == 12 else 0,
-            'temperature': 60.0, # Average temp
-            'fuel_price': 3.5,   # Average fuel
-            'cpi': 215.0,        # Average CPI
-            'unemployment': 7.0, # Average Unemployment
+            'temperature': 60.0, 
+            'fuel_price': 3.5,   
+            'cpi': 215.0,        
+            'unemployment': 7.0, 
             'month': d.month,
             'week_of_year': d.isocalendar().week
         })
         
     df_future = pd.DataFrame(future_data)
-    
-    # Predict
     predictions = model.predict(df_future)
     
     results = []
     
-    # We also want to return some "past" data to anchor the chart, 
-    # but we'll let the frontend stitch it with the actual historical data for simplicity.
-    # We just return the forecast points.
-    
+    # Calculate a widening confidence interval the further out we predict
     for i, d in enumerate(future_dates):
+        base_val = float(predictions[i])
+        # Uncertainty grows by 0.5% each week
+        margin = base_val * (0.02 + (i * 0.005)) 
+        
         results.append(ForecastDataPoint(
             date=d.strftime("%Y-%m-%d"),
-            predicted_revenue=float(predictions[i]),
-            is_forecast=True
+            predicted_revenue=base_val,
+            is_forecast=True,
+            forecast_lower=base_val - margin,
+            forecast_upper=base_val + margin
         ))
         
     return results

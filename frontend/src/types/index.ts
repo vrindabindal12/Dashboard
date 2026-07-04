@@ -37,3 +37,29 @@ export interface CustomerSegment {
   value: number;
   description: string;
 }
+
+export interface InventoryAlert {
+  id: number;
+  store: string;
+  category: string;
+  message: string;
+  severity: "critical" | "high" | "medium";
+}
+
+export interface ForecastData {
+  date: string;
+  historical: number | null;
+  forecast: number | null;
+  forecast_lower?: number | null;
+  forecast_upper?: number | null;
+}
+
+export interface SalesByRegion {
+  name: string;
+  sales: number;
+}
+
+export interface SalesByCategory {
+  name: string;
+  sales: number;
+}

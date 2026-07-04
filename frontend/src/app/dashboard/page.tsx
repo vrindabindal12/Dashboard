@@ -4,11 +4,18 @@ import { RevenueChart } from "@/components/dashboard/revenue-chart";
 import { InventoryAlertsList } from "@/components/dashboard/inventory-alerts";
 import { fetchKPIs, fetchRevenueTrend, fetchInventoryAlerts } from "@/lib/api";
 
-export default async function DashboardPage() {
+interface Props {
+  searchParams: Promise<{ days?: string }>;
+}
+
+export default async function DashboardPage({ searchParams }: Props) {
+  const params = await searchParams;
+  const days = params.days || "30";
+
   const [kpis, trendData, inventoryAlerts] = await Promise.all([
-    fetchKPIs(),
-    fetchRevenueTrend(),
-    fetchInventoryAlerts()
+    fetchKPIs(days),
+    fetchRevenueTrend(days),
+    fetchInventoryAlerts(days)
   ]);
 
   return (
