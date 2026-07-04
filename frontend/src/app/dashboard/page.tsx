@@ -53,13 +53,9 @@ export default async function DashboardPage() {
         />
       </div>
 
-      <div className="grid gap-6 grid-cols-1 lg:grid-cols-7">
-        <div className="lg:col-span-4">
-          <RevenueChart data={trendData} />
-        </div>
-        <div className="lg:col-span-3">
-          <InventoryAlertsList alerts={inventoryAlerts} />
-        </div>
+      <div className="space-y-6">
+        <RevenueChart data={trendData} />
+        <InventoryAlertsList alerts={inventoryAlerts} />
       </div>
     </div>
   );

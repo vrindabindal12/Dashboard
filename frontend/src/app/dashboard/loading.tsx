@@ -23,15 +23,25 @@ export default function DashboardLoading() {
           </Card>
         ))}
       </div>
-
-      <div className="grid gap-6 grid-cols-1 lg:grid-cols-4">
-        <Card className="col-span-1 lg:col-span-4 bg-card border-border shadow-sm h-[450px]">
+      <div className="space-y-6">
+        <Card className="bg-card border-border shadow-sm h-[450px]">
           <CardHeader>
             <Skeleton className="h-6 w-[180px] bg-muted/60" />
             <Skeleton className="h-4 w-[280px] mt-2 bg-muted/40" />
           </CardHeader>
           <CardContent className="h-[350px] pt-6">
             <Skeleton className="h-full w-full rounded-lg bg-muted/30" />
+          </CardContent>
+        </Card>
+        
+        <Card className="bg-card border-border shadow-sm h-[300px]">
+          <CardHeader>
+            <Skeleton className="h-6 w-[200px] bg-muted/60" />
+            <Skeleton className="h-4 w-[250px] mt-2 bg-muted/40" />
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <Skeleton className="h-16 w-full rounded-lg bg-muted/30" />
+            <Skeleton className="h-16 w-full rounded-lg bg-muted/30" />
           </CardContent>
         </Card>
       </div>
