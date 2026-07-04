@@ -8,14 +8,7 @@ export function Topbar() {
   return (
     <div className="flex items-center justify-between h-16 px-6 border-b border-border/40 bg-card">
       <div className="flex-1 flex items-center">
-        <div className="relative w-full max-w-md">
-          <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-          <Input 
-            type="search" 
-            placeholder="Search stores, products, or KPIs..." 
-            className="pl-9 bg-muted/50 border-transparent focus-visible:ring-primary/50"
-          />
-        </div>
+        {/* Search bar removed per user request */}
       </div>
       <div className="flex items-center space-x-4">
         <Button variant="ghost" size="icon" className="relative text-muted-foreground hover:text-foreground">
