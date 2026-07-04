@@ -56,7 +56,7 @@ export function Sidebar() {
           <div className="relative w-8 h-8 mr-3 bg-muted rounded-md flex items-center justify-center border border-border">
             <TrendingUp className="w-5 h-5 text-foreground" />
           </div>
-          <h1 className="text-xl font-bold tracking-tight text-foreground">
+          <h1 className="text-xl font-heading font-bold tracking-tight text-foreground">
             RetailOps
           </h1>
         </Link>

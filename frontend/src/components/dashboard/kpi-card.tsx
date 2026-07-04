@@ -20,7 +20,7 @@ export function KPICard({ title, value, icon: Icon, description, trend, trendVal
         <Icon className="h-4 w-4 text-muted-foreground" />
       </CardHeader>
       <CardContent>
-        <div className="text-2xl font-bold tracking-tight">{value}</div>
+        <div className="text-2xl font-mono font-bold tracking-tight">{value}</div>
         {(description || trendValue) && (
           <p className="text-xs mt-1 flex items-center tracking-tight">
             {trendValue && (

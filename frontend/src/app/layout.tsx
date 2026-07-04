@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans } from "next/font/google";
+import { Inter, Outfit, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { Sidebar } from "@/components/layout/sidebar";
 import { Topbar } from "@/components/layout/topbar";
 import { TooltipProvider } from "@/components/ui/tooltip";
 
-const jakarta = Plus_Jakarta_Sans({ subsets: ["latin"], variable: "--font-sans" });
+const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
+const outfit = Outfit({ subsets: ["latin"], variable: "--font-heading" });
+const jetbrains = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono" });
 
 export const metadata: Metadata = {
   title: "RetailOps Analytics",
@@ -18,7 +20,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`dark ${jakarta.variable} h-full antialiased`}>
+    <html lang="en" className={`dark ${inter.variable} ${outfit.variable} ${jetbrains.variable} h-full antialiased`}>
       <body className="h-full bg-background text-foreground overflow-hidden font-sans">
         <TooltipProvider>
           <div className="flex h-full w-full">
