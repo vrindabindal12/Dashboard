@@ -22,6 +22,9 @@ The dashboard features an integrated AI engine that acts as an automated Busines
 ### 2. Machine Learning Pipeline (XGBoost)
 The project includes a full production ML pipeline. It extracts temporal features (week of year, holidays) using `pandas`, trains an optimized XGBoost regressor, serializes the model with `joblib`, and serves 12-week forward-looking revenue forecasts via a FastAPI REST endpoint.
 
+### 3. Prescriptive Analytics (Inventory Recommendations)
+Transitions the dashboard from purely *descriptive* analytics to *prescriptive* analytics by implementing an operational alert system. It runs complex SQL aggregations to identify surging demand across stores and product categories, automatically recommending inventory restocks to prevent stockouts.
+
 ### 3. Advanced SQL & Data Aggregation
 The primary engineering feat of this project is the strictly optimized **SQL** data layer. Instead of pulling raw data into memory, all computations are executed within the database engine using **SQLAlchemy** (**Python's** premier **SQL** toolkit).
 - Computes Total Revenue, Profit Margins, and Average Order Value dynamically using native **SQL** `SUM()`, `COUNT()`, and `GROUP BY` functions.

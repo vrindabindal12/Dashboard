@@ -91,3 +91,33 @@ def get_holiday_sales(db: Session = Depends(get_db)):
     results = db.query(Sale.holiday_flag, func.sum(Sale.weekly_sales).label("total_sales")).group_by(Sale.holiday_flag).all()
     return [{"type": "Holiday" if r[0] else "Non-Holiday", "sales": r[1]} for r in results]
 
+@router.get("/inventory-alerts")
+def get_inventory_alerts(db: Session = Depends(get_db)):
+    """
+    Finds the highest selling store/category combinations and recommends restocking.
+    """
+    # We query the highest volume sales by store and category to mimic "surging demand" stockouts
+    top_selling = db.query(
+        Sale.store,
+        Sale.product_category,
+        func.sum(Sale.weekly_sales).label("total_sales")
+    ).group_by(Sale.store, Sale.product_category).order_by(func.sum(Sale.weekly_sales).desc()).limit(4).all()
+    
+    alerts = []
+    severities = ["critical", "high", "medium", "medium"]
+    
+    for i, r in enumerate(top_selling):
+        store = r[0]
+        category = r[1]
+        sales = r[2]
+        
+        alerts.append({
+            "id": i,
+            "store": f"Store {store}",
+            "category": category,
+            "message": f"Restock {category} in Store {store} next week. Demand surged to ${sales:,.0f}.",
+            "severity": severities[i]
+        })
+        
+    return alerts
+

@@ -1,12 +1,14 @@
 import { DollarSign, ShoppingCart, Store, TrendingUp } from "lucide-react";
 import { KPICard } from "@/components/dashboard/kpi-card";
 import { RevenueChart } from "@/components/dashboard/revenue-chart";
-import { fetchKPIs, fetchRevenueTrend } from "@/lib/api";
+import { InventoryAlertsList } from "@/components/dashboard/inventory-alerts";
+import { fetchKPIs, fetchRevenueTrend, fetchInventoryAlerts } from "@/lib/api";
 
 export default async function DashboardPage() {
-  const [kpis, trendData] = await Promise.all([
+  const [kpis, trendData, inventoryAlerts] = await Promise.all([
     fetchKPIs(),
-    fetchRevenueTrend()
+    fetchRevenueTrend(),
+    fetchInventoryAlerts()
   ]);
 
   return (
@@ -51,10 +53,14 @@ export default async function DashboardPage() {
         />
       </div>
 
-      <div className="grid gap-6 grid-cols-1 lg:grid-cols-4">
-        <RevenueChart data={trendData} />
+      <div className="grid gap-6 grid-cols-1 lg:grid-cols-7">
+        <div className="lg:col-span-4">
+          <RevenueChart data={trendData} />
+        </div>
+        <div className="lg:col-span-3">
+          <InventoryAlertsList alerts={inventoryAlerts} />
+        </div>
       </div>
     </div>
   );
 }
-
