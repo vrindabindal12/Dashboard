@@ -45,31 +45,21 @@ Unlike traditional Tableau or PowerBI dashboards which abstract away the enginee
 If you are a hiring manager or senior engineer reviewing this architecture, here is the exact data flow:
 
 ```mermaid
-graph TD
-    subgraph Data Layer
-        DB[(SQL Database)]
-        RawData[Kaggle Retail Dataset] -.-> |Seed Script| DB
-    end
-
-    subgraph Machine Learning Layer
-        Model[XGBoost Forecast Model]
-        DB --> |Feature Extraction via Pandas| Model
-    end
-
-    subgraph Backend API Layer
-        FA[FastAPI Server]
-        ORM[SQLAlchemy ORM]
-        Model --> |joblib load| FA
-        FA <--> |SQL Aggregations| ORM
-        ORM <--> |Query execution| DB
-    end
-
-    subgraph Frontend Presentation Layer
-        Next[Next.js 15 App Router]
-        UI[Recharts Dashboard]
-        Next <--> |Fetch API| FA
-        Next --> |Render| UI
-    end
+flowchart TD
+    A[Kaggle Dataset] --> B[Data Cleaning <br/>Pandas]
+    B --> C[(PostgreSQL Database)]
+    C --> D[SQL + EDA + Power BI Dashboard]
+    D --> E[Train XGBoost Model <br/>.pkl]
+    E --> F[FastAPI Backend]
+    F --> G[/predict endpoint]
+    G --> H[React / Next.js Frontend]
+    H --> I((Render + Vercel))
+    
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:2px;
+    classDef db fill:#e1f5fe,stroke:#0288d1;
+    classDef deploy fill:#e8f5e9,stroke:#388e3c;
+    class C db;
+    class I deploy;
 ```
 
 ---
