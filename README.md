@@ -33,6 +33,25 @@ While traditional Data Analysts rely on locked-in vendor tools like **Tableau** 
 ### 4. Customer Cohort Analysis
 Includes a dynamic customer segmentation endpoint that categorizes users based on purchasing behavior (Champions, Loyal, At-Risk, Lost) providing actionable business value rather than just vanity metrics.
 
+## How It Works Under The Hood (Technical Breakdown)
+
+If you are reviewing this architecture, here is the exact data flow from the database to the screen:
+
+### 1. The Database Layer (PostgreSQL/SQLite)
+The foundation of the project is the `Sale` table, which holds thousands of rows of transaction data (Store ID, Weekly Sales, Product Category, etc.). 
+- Instead of pulling all this raw data into Python (which would cause a memory leak on large datasets), the database does the heavy lifting.
+- When a request is made, the database executes SQL commands to sum up the revenue and count the orders *before* sending anything back.
+
+### 2. The Backend API (FastAPI & SQLAlchemy)
+The Python backend acts as the middleman.
+- **SQLAlchemy** is used to write Python code that translates into the optimized SQL queries mentioned above. For example, `func.sum(Sale.weekly_sales)` tells the database to add up all the sales.
+- **FastAPI** takes the results from the database, wraps them in a secure JSON format using **Pydantic** (to ensure the data types are strictly correct), and creates an API endpoint (e.g., `http://127.0.0.1:8000/api/v1/dashboard/kpis`).
+
+### 3. The Frontend (Next.js & React)
+The user interface is built with Next.js 15, utilizing modern React Server Components (RSC).
+- **Server-Side Fetching:** The Next.js server calls the FastAPI endpoints. It securely fetches the aggregated KPI data on the server.
+- **Hydration & Display:** The data is passed to UI components (like the `Recharts` graphs or `shadcn/ui` cards). The final, beautiful HTML is sent to the user's browser, resulting in a lightning-fast dashboard that requires zero loading spinners for the initial data fetch.
+
 ---
 
 ## System Architecture Diagram
@@ -55,8 +74,8 @@ graph TD
         Next[Next.js 15 App Router]
         RSC[React Server Components]
         UI[Recharts / Tailwind]
-        Next <--> |Fetch Promise| FA
-        RSC --> |Hydrate| UI
+        Next <--> |Fetch API| FA
+        RSC --> |Render| UI
     end
 ```
 
