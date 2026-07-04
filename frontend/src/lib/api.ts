@@ -8,6 +8,12 @@ export async function fetchKPIs(): Promise<KPI> {
   return res.json();
 }
 
+export async function fetchForecast(): Promise<any> {
+  const res = await fetch(`${API_URL}/analytics/forecast`, { cache: 'no-store' });
+  if (!res.ok) throw new Error("Failed to fetch forecast");
+  return res.json();
+}
+
 export async function fetchRevenueTrend(): Promise<RevenueTrend[]> {
   const res = await fetch(`${API_URL}/dashboard/revenue-trend`, { cache: 'no-store' });
   if (!res.ok) throw new Error("Failed to fetch revenue trend");
