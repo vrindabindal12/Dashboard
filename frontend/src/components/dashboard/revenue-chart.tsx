@@ -4,12 +4,25 @@ import {
   Area, AreaChart, ResponsiveContainer, Tooltip, XAxis, YAxis, CartesianGrid
 } from "recharts";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { CalendarDays } from "lucide-react";
+import { useRouter, useSearchParams } from "next/navigation";
 
 interface RevenueChartProps {
   data: { date: string; revenue: number }[];
 }
 
 export function RevenueChart({ data }: RevenueChartProps) {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const currentDays = searchParams.get("days") || "30";
+
+  const handleDateChange = (value: string) => {
+    const params = new URLSearchParams(searchParams.toString());
+    params.set("days", value);
+    router.push(`?${params.toString()}`);
+  };
+
   // Format data
   const formattedData = data.map(item => ({
     ...item,
@@ -18,9 +31,25 @@ export function RevenueChart({ data }: RevenueChartProps) {
 
   return (
     <Card className="bg-card border-border shadow-sm hover:-translate-y-1 hover:shadow-md transition-all duration-300 ease-out">
-      <CardHeader>
-        <CardTitle className="tracking-tight">Revenue Trend</CardTitle>
-        <CardDescription>Daily revenue performance over time</CardDescription>
+      <CardHeader className="flex flex-row items-center justify-between pb-2">
+        <div>
+          <CardTitle className="tracking-tight">Revenue Trend</CardTitle>
+          <CardDescription>Daily revenue performance over time</CardDescription>
+        </div>
+        <div className="flex items-center gap-2 text-sm text-muted-foreground">
+          <CalendarDays className="w-4 h-4 hidden sm:block" />
+          <Select value={currentDays} onValueChange={handleDateChange}>
+            <SelectTrigger className="w-[140px] sm:w-[160px] h-8 border-border bg-muted/30 hover:bg-muted/50 transition-colors">
+              <SelectValue placeholder="Date range" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="7">Last 7 Days</SelectItem>
+              <SelectItem value="30">Last 30 Days</SelectItem>
+              <SelectItem value="90">Last 90 Days</SelectItem>
+              <SelectItem value="365">Year to Date</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
       </CardHeader>
       <CardContent className="pl-0 pb-2">
         <div className="h-[350px] w-full overflow-x-auto">
