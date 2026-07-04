@@ -37,7 +37,7 @@ export function CustomerSegmentsChart({ data }: CustomerSegmentsChartProps) {
               boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)'
             }}
             itemStyle={{ color: 'hsl(var(--foreground))', fontWeight: 500 }}
-            formatter={(value: number, name: string, props: any) => [
+            formatter={(value: any, name: any, props: any) => [
               `${value}%`, 
               <span key={name} className="flex flex-col tracking-tight">
                 <span className="font-semibold text-foreground">{name}</span>
