@@ -51,7 +51,7 @@ flowchart TD
     C --> D[SQL + EDA + Power BI Dashboard]
     D --> E[Train XGBoost Model <br/>.pkl]
     E --> F[FastAPI Backend]
-    F --> G[/predict endpoint]
+    F --> G["/predict endpoint"]
     G --> H[React / Next.js Frontend]
     H --> I((Render + Vercel))
     
