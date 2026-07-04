@@ -7,36 +7,36 @@
 ![Machine_Learning](https://img.shields.io/badge/ML-XGBoost-orange)
 ![SQL](https://img.shields.io/badge/Database-SQLite%2FPostgreSQL-blue)
 
-A full-stack, enterprise-grade data platform demonstrating end-to-end **Machine Learning**, **Data Analytics**, and **Generative AI**. This project proves my ability to extract raw data, build predictive models, and deploy them into production web applications.
+A full-stack, enterprise-grade data platform demonstrating end-to-end **Machine Learning**, **Data Analytics**, and **Generative AI**. This architecture bridges the gap between raw data pipelines, predictive models, and scalable production web applications.
 
 ---
 
 ## 🎯 Executive Summary
-Most junior analytics portfolios consist of static Jupyter Notebooks. **RetailOps Analytics** is different. It is a fully deployed production application that demonstrates my capability to act as a **Data Analyst**, **Machine Learning Engineer**, and **Data Engineer**.
+While many analytics workflows remain isolated in static notebooks, **RetailOps Analytics** is engineered as a fully deployed production application. It integrates robust data analysis, machine learning forecasting, and data engineering into a unified, high-performance platform.
 
-By pushing heavy `SQL` aggregations down to the database layer, training an `XGBoost` regression model for forecasting, and engineering a simulated Generative AI engine for business intelligence, this platform solves real-world enterprise data challenges.
+By pushing heavy `SQL` aggregations down to the database layer, training an `XGBoost` regression model for forecasting, and engineering a simulated Generative AI engine for business intelligence, this platform is designed to solve real-world enterprise data challenges at scale.
 
 ---
 
-## 🚀 Core Competencies Demonstrated
+## 🚀 Core Features & Architecture
 
 ### 1. Machine Learning & Predictive Analytics (Python, XGBoost, Pandas)
-I built a full production Machine Learning pipeline. The backend uses `pandas` to extract temporal features (e.g., week of year, holidays, macroeconomic indicators like CPI and fuel prices) from raw data. It then trains an optimized **XGBoost regressor** to forecast the next 12 weeks of revenue, serialized via `joblib`, and served instantly through a FastAPI REST endpoint.
+The platform features a full production Machine Learning pipeline. The backend utilizes `pandas` to extract temporal features (e.g., week of year, holidays, macroeconomic indicators like CPI and fuel prices) from raw data. It then trains an optimized **XGBoost regressor** to forecast the next 12 weeks of revenue, serialized via `joblib`, and served instantly through a FastAPI REST endpoint.
 
 ### 2. Generative AI & Natural Language Processing
-To bridge the gap between raw data and actionable business intelligence, I engineered a programmatic GenAI Insights Engine. It analyzes the SQL database for statistical anomalies (regional drops, holiday spikes) and dynamically streams conversational, ChatGPT-style insights directly to the frontend interface.
+To bridge the gap between raw data and actionable business intelligence, a programmatic GenAI Insights Engine was engineered. It analyzes the SQL database for statistical anomalies (regional drops, holiday spikes) and dynamically streams conversational insights directly to the frontend interface.
 
 ### 3. Prescriptive Analytics (Inventory Alerts)
-Moving beyond *descriptive* analytics (what happened), I implemented *prescriptive* analytics (what we should do). By writing complex SQL aggregations to identify surging demand across stores and product categories, the dashboard automatically recommends inventory restocks to prevent stockouts.
+Moving beyond *descriptive* analytics (what happened), the system implements *prescriptive* analytics (what we should do). By utilizing complex SQL aggregations to identify surging demand across stores and product categories, the dashboard automatically recommends inventory restocks to prevent stockouts.
 
 ### 4. Advanced SQL & Data Aggregation
-The primary engineering feat of this project is the strictly optimized **SQL** data layer. Instead of pulling raw data into memory (which causes the classic `O(N)` memory leak), all computations are executed within the database engine using `SQLAlchemy`.
+The primary engineering foundation of this project is a strictly optimized **SQL** data layer. Instead of pulling raw data into memory (which causes the classic `O(N)` memory leak), all computations are executed natively within the database engine using `SQLAlchemy`.
 - Computes Total Revenue, Profit Margins, and Average Order Value dynamically using native SQL `SUM()`, `COUNT()`, and `GROUP BY`.
 
-### 5. Full-Stack Data Engineering (FastAPI & Next.js)
-Unlike traditional Tableau or PowerBI dashboards which abstract away the engineering, this platform proves full-stack data proficiency. 
-- **Backend:** Built a high-performance REST API with **Python** and **FastAPI**.
-- **Frontend:** Built with **Next.js 15** and **React Server Components (RSC)** to guarantee zero client-side data fetching overhead, visualized dynamically with **Recharts**.
+### 5. Full-Stack Web Infrastructure (FastAPI & Next.js)
+Unlike standard BI dashboards that abstract away the underlying engineering, this platform relies on custom, high-performance web infrastructure to serve analytics.
+- **Backend:** High-performance REST API built with **Python** and **FastAPI**.
+- **Frontend:** Built with **Next.js 15** and **React Server Components (RSC)** to guarantee minimal client-side data fetching overhead, visualized dynamically with **Recharts**.
 
 ---
 
