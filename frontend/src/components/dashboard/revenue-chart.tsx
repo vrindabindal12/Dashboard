@@ -17,7 +17,8 @@ export function RevenueChart({ data }: RevenueChartProps) {
   const searchParams = useSearchParams();
   const currentDays = searchParams.get("days") || "30";
 
-  const handleDateChange = (value: string) => {
+  const handleDateChange = (value: string | null) => {
+    if (!value) return;
     const params = new URLSearchParams(searchParams.toString());
     params.set("days", value);
     router.push(`?${params.toString()}`);
