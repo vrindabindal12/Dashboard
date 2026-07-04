@@ -88,7 +88,7 @@ graph TD
 - **Language:** Python 3.10+
 - **ORM:** SQLAlchemy (for advanced SQL query generation)
 - **Database:** SQLite (Development) / PostgreSQL (Production)
-- **Data Source:** Synthetically generated 5,000+ row dataset mimicking the Walmart Retail Sales dataset.
+- **Data Source:** Synthetically generated 5,000+ row dataset based on the [Walmart Store Sales Forecasting Dataset on Kaggle](https://www.kaggle.com/c/walmart-recruiting-store-sales-forecasting/data).
 
 ### Frontend
 - **Framework:** Next.js 15 (React 19)
