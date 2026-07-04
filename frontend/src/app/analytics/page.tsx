@@ -2,6 +2,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { BrainCircuit } from "lucide-react";
 import { fetchForecast, fetchRevenueTrend } from "@/lib/api";
 import { ForecastChart } from "@/components/dashboard/forecast-chart";
+import { AiInsightsCard } from "@/components/dashboard/ai-insights-card";
 
 export default async function AnalyticsPage() {
   const forecastData = await fetchForecast();
@@ -106,6 +107,8 @@ export default async function AnalyticsPage() {
           </CardContent>
         </Card>
       </div>
+
+      <AiInsightsCard />
     </div>
   );
 }

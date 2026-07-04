@@ -14,6 +14,12 @@ export async function fetchForecast(): Promise<any> {
   return res.json();
 }
 
+export async function fetchInsights(): Promise<{insight: string}> {
+  const res = await fetch(`${API_URL}/analytics/insights`, { cache: 'no-store' });
+  if (!res.ok) throw new Error("Failed to fetch insights");
+  return res.json();
+}
+
 export async function fetchRevenueTrend(): Promise<RevenueTrend[]> {
   const res = await fetch(`${API_URL}/dashboard/revenue-trend`, { cache: 'no-store' });
   if (!res.ok) throw new Error("Failed to fetch revenue trend");

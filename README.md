@@ -16,16 +16,21 @@ Most data analytics projects rely on static notebooks or unoptimized direct data
 
 ## Core Data Analytics Skills Demonstrated
 
-### 1. Advanced SQL & Data Aggregation
+### 1. Generative AI & Natural Language Processing
+The dashboard features an integrated AI engine that acts as an automated Business Intelligence Analyst. It programmatically analyzes the SQLite database for statistical anomalies (like regional sales drops or macroeconomic correlations) and generates conversational, ChatGPT-style insights streamed directly to the frontend.
+
+### 2. Machine Learning Pipeline (XGBoost)
+The project includes a full production ML pipeline. It extracts temporal features (week of year, holidays) using `pandas`, trains an optimized XGBoost regressor, serializes the model with `joblib`, and serves 12-week forward-looking revenue forecasts via a FastAPI REST endpoint.
+
+### 3. Advanced SQL & Data Aggregation
 The primary engineering feat of this project is the strictly optimized **SQL** data layer. Instead of pulling raw data into memory, all computations are executed within the database engine using **SQLAlchemy** (**Python's** premier **SQL** toolkit).
 - Computes Total Revenue, Profit Margins, and Average Order Value dynamically using native **SQL** `SUM()`, `COUNT()`, and `GROUP BY` functions.
 - Implements complex **SQL** projections (e.g., `SUM(weekly_sales * 0.18)`) to derive implicit metrics not native to the raw dataset.
 
-### 2. Python Data Engineering
-- **FastAPI & Python 3.10+:** Engineered a high-performance REST API to serve the aggregated data. 
-- **Pydantic:** Validates data contracts to ensure absolute data integrity before it reaches the presentation layer.
+### 4. Full-Stack Data Engineering (Python)
+Unlike traditional Tableau/PowerBI dashboards which abstract away the engineering, this platform proves full-stack data proficiency. Built entirely with raw Python, SQL, and TypeScript, it demonstrates the ability to build custom data pipelines and scalable infrastructure from the ground up.
 
-### 3. Custom Business Intelligence (Replacing Tableau/PowerBI)
+### 5. Custom Business Intelligence (Replacing Tableau/PowerBI)
 While traditional **Data Analysts** rely on locked-in vendor tools like **Tableau** or **PowerBI**, this project demonstrates the ability to build a **fully custom, full-stack BI Dashboard from scratch**.
 - Built with **Next.js 15** App Router using **React Server Components (RSC)** to guarantee zero client-side data fetching overhead.
 - Utilizes **Recharts** for dynamic, interactive data visualization (Area charts, Pie charts) that match the exact capabilities of enterprise BI software but with complete layout control.
