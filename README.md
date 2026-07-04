@@ -116,7 +116,7 @@ graph TD
 
 ## 💻 Local Development Setup
 
-To test my skills and run this project locally, you must start both the backend API server and the frontend Next.js server.
+To run this project locally, you must start both the backend API server and the frontend Next.js server.
 
 ### 1. Backend (FastAPI & Machine Learning)
 Navigate to the backend directory and set up a virtual environment:
