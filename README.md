@@ -156,5 +156,14 @@ The web application will be available at `http://localhost:3000`.
 
 ---
 
+## 🚀 Deployment & Troubleshooting
+
+When deploying the application to production platforms like **Vercel** (Frontend) and **Render** (Backend), you may encounter cross-origin or framing issues. 
+
+- **CORS Configuration:** Ensure that the FastAPI backend explicitly allows CORS origins for your Vercel production domain. In this project, `main.py` is configured with `CORSMiddleware` to allow cross-origin requests.
+- **Security Headers:** The `next.config.ts` includes security headers to handle framing and secure cross-origin embedding, ensuring a seamless connection between the deployed Next.js UI and the Python REST API.
+
+---
+
 ## 📜 License
 This project is open-source and available under the MIT License.
